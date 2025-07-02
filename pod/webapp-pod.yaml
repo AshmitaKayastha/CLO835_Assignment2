@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: webapp
+  name: webapp-pod
   labels:
     app: employees
 spec:
@@ -18,6 +18,6 @@ spec:
         - name: DBUSER
           value: "root"
         - name: DBPWD
-          value: "password"
+          value: "passwors"
         - name: DBPORT
-          value: "3306
+          value: "3306"
