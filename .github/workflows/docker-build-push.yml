@@ -30,14 +30,14 @@ jobs:
     - name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
 
- - name: Build and Push WebApp image
+    - name: Build and Push WebApp image
       run: |
-        docker build -t $WEBAPP_REPO:$IMAGE_TAG .
+        docker build -t $WEBAPP_REPO:$IMAGE_TAG -f Dockerfile .
         docker tag $WEBAPP_REPO:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$WEBAPP_REPO:$IMAGE_TAG
         docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$WEBAPP_REPO:$IMAGE_TAG
 
     - name: Build and Push MySQL image
       run: |
-        docker build -t $MYSQL_REPO:$IMAGE_TAG .
+        docker build -t $MYSQL_REPO:$IMAGE_TAG -f Dockerfile_mysql .
         docker tag $MYSQL_REPO:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$MYSQL_REPO:$IMAGE_TAG
         docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$MYSQL_REPO:$IMAGE_TAG
