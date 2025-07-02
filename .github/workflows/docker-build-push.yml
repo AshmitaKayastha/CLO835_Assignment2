@@ -32,12 +32,17 @@ jobs:
 
     - name: Build and Push WebApp image
       run: |
-        docker build -t $WEBAPP_REPO:$IMAGE_TAG -f Dockerfile .
+        docker build -t $WEBAPP_REPO:$IMAGE_TAG -t $WEBAPP_REPO:latest -f Dockerfile .
+        docker tag $WEBAPP_REPO:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$WEBAPP_REPO:latest
         docker tag $WEBAPP_REPO:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$WEBAPP_REPO:$IMAGE_TAG
         docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$WEBAPP_REPO:$IMAGE_TAG
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$WEBAPP_REPO:latest
 
     - name: Build and Push MySQL image
       run: |
-        docker build -t $MYSQL_REPO:$IMAGE_TAG -f Dockerfile_mysql .
+        docker build -t $MYSQL_REPO:$IMAGE_TAG -t $MYSQL_REPO:latest -f Dockerfile_mysql .
+        docker tag $MYSQL_REPO:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$MYSQL_REPO:latest
         docker tag $MYSQL_REPO:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$MYSQL_REPO:$IMAGE_TAG
         docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$MYSQL_REPO:$IMAGE_TAG
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$MYSQL_REPO:latest
+
