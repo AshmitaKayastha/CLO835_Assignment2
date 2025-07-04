@@ -3,30 +3,30 @@ kind: Deployment
 metadata:
   name: webapp-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: webapp
+      app: employees
   template:
     metadata:
       labels:
-        app: webapp
+        app: employees
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
         - name: webapp
-          image: 807683106441.dkr.ecr.us-east-1.amazonaws.com/webapp:d1db8a98edc47a92dcf5405c31a29f1294fc365e
+          image: 807683106441.dkr.ecr.us-east-1.amazonaws.com/webapp:latest
           ports:
-            - containerPort: 5000
+            - containerPort: 8080
           env:
             - name: DBHOST
-              value: "mysql"       # must match the service name
+              value: "mysql"
             - name: DBUSER
               value: "root"
             - name: DBPWD
               value: "password"
-            - name: DATABASE
-              value: "employees"
             - name: DBPORT
               value: "3306"
+            - name: DATABASE
+              value: "employees" 

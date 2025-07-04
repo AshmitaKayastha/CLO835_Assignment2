@@ -16,9 +16,9 @@ spec:
         - name: regcred
       containers:
         - name: mysql
-          image: 807683106441.dkr.ecr.us-east-1.amazonaws.com/mysql:d1db8a98edc47a92dcf5405c31a29f1294fc365e
+          image: 807683106441.dkr.ecr.us-east-1.amazonaws.com/mysql:latest
           ports:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "passwors"
+              value: "password"

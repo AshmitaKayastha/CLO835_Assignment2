@@ -28,3 +28,5 @@ spec:
               value: "password"
             - name: DBPORT
               value: "3306"
+            - name: DATABASE
+              value: "employees" 

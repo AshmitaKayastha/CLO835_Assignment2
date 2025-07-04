@@ -6,10 +6,10 @@ metadata:
     app: mysql
 spec:
   imagePullSecrets:
-    - name: regcred  # make sure this secret exists
+    - name: regcred
   containers:
     - name: mysql
-      image: 807683106441.dkr.ecr.us-east-1.amazonaws.com/mysql@sha256:d1db8a98edc47a92dcf5405c31a29f1294fc365e
+      image: 807683106441.dkr.ecr.us-east-1.amazonaws.com/mysql:latest
       ports:
         - containerPort: 3306
       env:
